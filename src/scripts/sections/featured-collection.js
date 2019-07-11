@@ -47,6 +47,7 @@ register('featured-collection', {
           cellAlign: 'left',
           contain: true,
           wrapAround: true,
+          groupCells: true
         });
        }
     );

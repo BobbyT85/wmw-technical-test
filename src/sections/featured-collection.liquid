@@ -14,34 +14,34 @@
   <p class="description">{{ collection.description }}</p>
 
   <div class="main-carousel">
+    {% for product in collection.products limit: 6 %}
+      {% assign current_variant = product.selected_or_first_available_variant %}
+    
+      <a class="carousel-cell" href="{{ product.url | within: collection }}">
+        <div class="product">
 
-  {% for product in collection.products limit: 6 %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
-  
-    <a class="carousel-cell" href="{{ product.url | within: collection }}">
-      <div class="product">
-
-        <div class="product-image">
-          {% if product.featured_image != blank %}
-            {{ product.featured_image | img_url: 'large' | img_tag }}
-          {% endif %}
-          <div class="add-to-cart">
-            <span js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1">Add to cart</span>
+          <div class="product-image">
+            {% if product.featured_image != blank %}
+              {{ product.featured_image | img_url: 'large' | img_tag }}
+            {% endif %}
+            <div class="add-to-cart">
+              <span js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1">Add to cart</span>
+            </div>
           </div>
+        <!-- </div>
+
+        <div> -->
+          <p class="product-title">{{ product.title | escape }}</p>
+
+          <span class="product-price">
+            {% include 'product-price' %}
+          </span>
         </div>
-      <!-- </div>
-
-      <div> -->
-        <p class="product-title">{{ product.title | escape }}</p>
-
-        <span class="product-price">
-          {% include 'product-price' %}
-        </span>
-      </div>
-    </a>
-  {% endfor %}
-
+      </a>
+    {% endfor %}
   </div>
+
+  <div class="view-collection">View collection</div>
 
 </section>
 

@@ -125,10 +125,33 @@ h2 {
 }
 /* position outside */
 .flickity-prev-next-button.previous {
-  left: -70px !important;
+    left: -70px !important;
 }
 .flickity-prev-next-button.next {
-  right: -70px !important;
+    right: -70px !important;
+}
+.flickity-page-dots {
+    // margin-bottom: 47px !important;
+}
+
+.view-collection {
+    margin-top: 47px + 34px;
+    width: 175px;
+    height: 55px;
+    background-color: $color-header;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: $font-header;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 a {
