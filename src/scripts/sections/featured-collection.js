@@ -18,7 +18,101 @@ register('featured-collection', {
 
   init() {
     window.console.log('Initialising featured collection section');
+
+    let x = document.querySelectorAll(".carousel-cell"), i = 0;
+    for (i = 0; i < x.length; i++) {
+      x[i].addEventListener("mouseover", function($e) {
+        // console.log($e.currentTarget);
+        $e.currentTarget.querySelector(".add-to-cart").style.opacity = 1;
+      });
+
+
+      x[i].addEventListener("mouseout", function($e) {
+        // console.log($e.currentTarget);
+        $e.currentTarget.querySelector(".add-to-cart").style.opacity = 0;
+      });
+    }
+
+    this.politeLoad([
+        "https://unpkg.com/flickity@2/dist/flickity.min.css",
+        "https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
+      ],
+
+      function() {
+        console.log(":: LOADER - all initial loads complete ::");
+        // this.startFlickity();
+        let elem = document.querySelector('.main-carousel');
+        let flkty = new Flickity( elem, {
+          // options
+          cellAlign: 'left',
+          contain: true,
+          wrapAround: true,
+        });
+       }
+    );
   },
+
+  loadScript($url, $callback) {
+    console.log(String(":: LOADER - loading " + $url + " ::"));
+
+    let filetype = $url.split('.').pop();
+
+    switch (filetype) {
+        case "js":
+            let script  = document.createElement("script");
+            script.type = "text/javascript";
+            if (script.readyState) {  //IE
+                script.onreadystatechange = function() {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        console.log(String(":: LOADER - successfully loaded " + $url + " ::"));
+                        $callback();
+                    }
+                };
+            } else {  //Others
+                script.onload = function() { 
+                    $callback(); 
+                    console.log(String(":: LOADER - successfully loaded " + $url + " ::"));
+                };
+	
+				script.onerror = function() {
+					console.error(String(":: LOADER ERROR - failed to load " + $url + " ::"));
+				}
+            }
+
+            script.src = $url;
+            document.getElementsByTagName("head")[0].appendChild(script);
+            break;
+
+        case "css":
+            let extCSS = document.createElement("link");
+            extCSS.setAttribute("rel", "stylesheet");
+            extCSS.setAttribute("type", "text/css");
+            extCSS.setAttribute("href", $url); 
+            document.getElementsByTagName("head")[0].appendChild(extCSS);
+            console.log(String(":: LOADER - successfully loaded " + $url + " ::"));
+            $callback();
+            break;
+    }
+  },
+
+  politeLoad($urls, $onComplete) {
+    let l = $urls.length, loaded = 0, checkProgress = function() { if (++loaded === l && $onComplete) $onComplete(); }, i, varType;
+
+    for (i = 0; i < l; i++) {					
+        varType = typeof $urls[i];
+
+        switch (varType) {
+            case "string":					
+                this.loadScript($urls[i], checkProgress); //Using the Enabler script loader to politely load the javascript
+                break;
+        }
+    }
+  },
+
+  // startFlickity() {
+  //   console.log("start flickity");
+  // },
 
   publicMethod() {
     // Custom public section method

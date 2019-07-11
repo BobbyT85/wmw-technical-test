@@ -7,3 +7,130 @@
 .featured-collection {
   
 }
+
+h2 {
+    color: $color-header;
+    font-family: $font-header;
+    font-size: 40px;
+    text-align: center;
+}
+
+.description {
+    color: $color-body-text;
+    font-family: $font-header;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 26px;
+    margin: auto;
+    margin-bottom: 41px;
+    text-align: center;
+    width: 35%;
+}
+
+.product-image {
+    position: relative;
+    width: 306px;
+    height: 480px;
+}
+
+.add-to-cart {
+    width: 270px;
+    height: 47px;
+    background-color: white;
+    position: absolute;
+    float: left;
+
+    padding: 0;
+    margin: 0;
+
+    left: 18px;
+    bottom: 18px;
+
+    color: $color-header;
+    font-weight: bold;
+    font-family: $font-header;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    vertical-align: middle;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity: 0;
+}
+
+.product-title {
+    color: $color-header;
+    font-family: $font-header;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 26px;
+    margin: 0;
+    padding: 0;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+.product-price {
+    color: $color-body-text;
+    font-family: $font-header;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 26px;
+    margin: 0;
+    padding: 0;
+}
+
+.product-image img {
+    width: 306px;
+    height: 480px;
+}
+
+.product {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    max-width: 306px;
+}
+
+.main-carousel {
+    width: 60%;
+    width: 1290px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-cell {
+    max-width: 306px;
+    margin-left: 11px;
+    margin-right: 11px;
+}
+
+.flickity-button {
+    background: transparent !important;
+}
+/* big previous & next buttons */
+.flickity-prev-next-button {
+    width: 50px !important;
+    height: 100px !important;
+}
+/* icon color */
+.flickity-button-icon {
+    fill: #979797 !important;
+}
+/* hide disabled button */
+.flickity-button:disabled {
+    display: none !important;
+}
+/* position outside */
+.flickity-prev-next-button.previous {
+  left: -70px !important;
+}
+.flickity-prev-next-button.next {
+  right: -70px !important;
+}
+
+a {
+    text-decoration: none;
+}

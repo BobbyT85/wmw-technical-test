@@ -11,29 +11,38 @@
 
   <h2>{{ collection.title | escape }}</h2>
 
-  <p>{{ collection.description }}</p>
+  <p class="description">{{ collection.description }}</p>
+
+  <div class="main-carousel">
 
   {% for product in collection.products limit: 6 %}
     {% assign current_variant = product.selected_or_first_available_variant %}
   
-    <a href="{{ product.url | within: collection }}">
-      <div>
-        {% if product.featured_image != blank %}
-          {{ product.featured_image | img_url: 'large' | img_tag }}
-        {% endif %}
-        
-        <span js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1">Add to cart</span>
-      </div>
+    <a class="carousel-cell" href="{{ product.url | within: collection }}">
+      <div class="product">
 
-      <div>
-        <p>{{ product.title | escape }}</p>
+        <div class="product-image">
+          {% if product.featured_image != blank %}
+            {{ product.featured_image | img_url: 'large' | img_tag }}
+          {% endif %}
+          <div class="add-to-cart">
+            <span js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1">Add to cart</span>
+          </div>
+        </div>
+      <!-- </div>
 
-        <span>
+      <div> -->
+        <p class="product-title">{{ product.title | escape }}</p>
+
+        <span class="product-price">
           {% include 'product-price' %}
         </span>
       </div>
     </a>
   {% endfor %}
+
+  </div>
+
 </section>
 
 {% schema %}
